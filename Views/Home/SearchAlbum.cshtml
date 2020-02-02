@@ -1,0 +1,54 @@
+﻿@model PagedList.IPagedList<EvaGallery.Models.ImagePostModel>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Image Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("GallerySearch", null, FormMethod.Get))
+{
+    <h4 style="color:rosybrown"> Search Gallery.....</h4>
+    <div class="row">
+        <h6></h6>
+        <div class="col-sm-8">
+            <div class="input-group">
+                <input type="text"
+                       name="filter"
+                       value="@ViewBag.filter"
+                       class="form-control"
+                       style="display: inline"
+                       placeholder="Search by Title/UserName" />
+                @*<span class="glyphicon glyphicon-search">*@
+                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search">Go</span></button>
+                @*</span>*@
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+}
+
+@using (Html.BeginForm("UserDetails", null, FormMethod.Get))
+{
+    <h4 style="color:rosybrown"> Search User.....</h4>
+    <div class="row">
+        <h6></h6>
+        <div class="col-sm-8">
+            <div class="input-group">
+                <input type="text"
+                       name="filter"
+                       value="@ViewBag.filter"
+                       class="form-control"
+                       style="display: inline"
+                       placeholder="Search user details" />
+                @*<span class="glyphicon glyphicon-search">*@
+                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search">Go</span></button>
+                @*</span>*@
+            </div>
+        </div>
+    </div>
+}

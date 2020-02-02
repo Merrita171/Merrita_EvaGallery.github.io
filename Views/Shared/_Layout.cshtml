@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+   @* <link href="~/Content/Custom.css" rel="stylesheet" />*@
+    <link href="~/Content/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/fonts.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/MyStyles.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap-image-gallery.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/blueimp-gallery.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap-image-gallery.min.css" />
+    <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+    <div id="header-wrapper" style="height:150px">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">Eva Gallery</a></h1>
+            </div>
+            <div id="menu">
+                <ul>
+                    <li> @Html.ActionLink("Album", "Account", "Home", new { area = "" })</li>
+                    <li>@Html.ActionLink("Portfolio", "UserGrid", "Home")</li>
+                    <li>@Html.ActionLink("Upload Album", "Create", "Home")</a></li>
+                    <li>@Html.ActionLink("Upload User", "CreateUser", "Home")</li>
+                    <li>@Html.ActionLink("Search", "SearchAlbum", "Home")</li>
+                    <li>@Html.ActionLink("ContactUs", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+       
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        
+    </div>
+    <div id="copyright" class="container">
+        <p>&copy; All rights reserved. | Photos by Users | Design by Merrita Mohandas |@DateTime.Now.Year-Eva Gallery.</p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.blueimp-gallery.min.js"></script>
+    @*
+        <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>*@
+    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
+    @*
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*
+        <script src="~/Scripts/jquery-ui-1.10.0.min.js"></script>*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

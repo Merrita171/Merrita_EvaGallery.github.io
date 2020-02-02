@@ -1,0 +1,27 @@
+﻿@model EvaGallery.Models.BlogModels
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 class="text-uppercase">List of Blogs</h3>
+
+@foreach (var blog in Model.PaginatedBlogs())
+{
+    <div class="alert alert-secondary rounded-0">
+        <a href="@blog.Title" class="link" target="_blank">@blog.Content</a> <span class="pull-right text-primary"><i class="fa fa-calendar"></i> @blog.CreateTime.ToString("dd-MM-yyyy")</span>
+    </div>
+}
+
+<ul class="pagination">
+    @for (int i = 1; i <= Model.PageCount(); i++)
+    {
+        <li class="@(i == Model.CurrentPage ? "page-item active" : "page-item")">
+            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+        </li>
+    }
+</ul>
+
+  
+

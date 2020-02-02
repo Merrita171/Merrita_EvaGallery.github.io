@@ -1,0 +1,66 @@
+﻿@model EvaGallery.Models.ImagePostModel
+@{
+    ViewBag.Title = "Upload Images";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model == null )
+{
+    <h4 style="color:rosybrown"> @ViewBag.User 's is empty</h4>
+    <p>Either under development, or author is busy. Visit back again later! :-)</p>
+    <a href="~/Home/account">Go back to album</a>
+}
+else
+{
+<div class="well">
+
+
+    <div class="form-horizontal ">
+        <div class="form-group">
+
+            <div class="col-sm-5">
+                <img src="@Url.Content(Model.ImagePath)" alt="Image" />
+
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="col-sm-5">
+                <h5 style="font-weight: bold;color:white">Album : @Model.Album</h5>
+
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-sm-5">
+                <h5 style="font-weight: bold;color:white">Title: @Model.Title</h5>
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <div class="col-sm-5">
+                <h5 style="font-weight: bold;color:white">Posted By : @Model.UserName</h5>
+
+
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <div class="col-sm-5">
+                <h5 style="font-weight: bold;color:white">Posted On : @Model.CreatedOn</h5>
+
+            </div>
+
+        </div>
+        <br />
+        <br />
+
+
+    </div>
+</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,60 @@
+﻿@model EvaGallery.Models.ImagePostModel
+
+@{
+    ViewBag.Title = "Upload Images";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="padding:2%;color:rosybrown">Upload Albums</h2>
+<div class="well">
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Album, new { @class = "control-label col-sm-3 fontcolr" })
+                <div class="col-sm-5">
+                    @Html.TextBoxFor(m => m.Album, new { @class = "form-control required" })
+                    @Html.ValidationMessageFor(model => model.Album)
+                </div>
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Title, new { @class = "control-label col-sm-3 fontcolr" })
+                <div class="col-sm-5">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control required" })
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+
+            </div>
+            <div class="form-group">
+               
+                @Html.LabelFor(m => Model.UserName, new { @class = "control-label col-sm-3 fontcolr" })
+                <div class="col-sm-5">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control required" })
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Choose Image", new { @class = "control-label col-sm-3 fontcolr" })
+                <div class="col-sm-5">
+                    <input type="file" name="files"
+                           multiple="multiple" accept=".jpg, .png, .gif" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-5 col-sm-offset-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <div style="color:red">
+                        <a class="fontcolr">@ViewBag.error</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

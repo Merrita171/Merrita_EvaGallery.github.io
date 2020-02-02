@@ -1,0 +1,74 @@
+﻿@model EvaGallery.Models.Users
+@{
+    ViewBag.Title = "Upload Images";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model == null)
+{
+    <h4> @ViewBag.User 'is not found.</h4>
+    <p>Either under development, or author is busy. Visit back again later! :-)</p>
+    <a href="~/Home/Account">Go back to album</a>
+}
+else
+{
+<h2 style="padding:1.3%;color:rosybrown">About Me</h2>
+<div class="well">
+   
+     
+        <div class="form-horizontal ">
+            <div class="form-group">
+               
+                <div class="col-sm-5">
+                    <img src="@Url.Content(Model.Photo)" alt="Image" />
+
+                </div>
+                </div>
+                <div class="form-group">
+                  
+                    <div class="col-sm-5">
+                        <h5 style="font-weight: bold;color:white">@Model.Name</h5>
+                    
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <h5 style="font-weight: bold;color:white">@Model.Address</h5>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                  
+                    <div class="col-sm-5">
+                        <h5 style="font-weight: bold;color:white">@Model.Phone</h5>
+                       
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                  
+                    <div class="col-sm-5">
+                        <h5 style="font-weight: bold;color:white">@Model.Email</h5>
+
+                    </div>
+
+                </div>
+            <br />
+            <br />
+
+            <div class="form-group" style="color:darkgoldenrod">
+                      
+            <label>Create new blog</label> <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Blog", new { filter = Model.Name })" id="btnCreate1"><span class="glyphicon"></span>+</a>
+            <label>View blog</label> <a class="btn btn-success" data-modal="" href="@Url.Action("Index", "Blog", new { filter = Model.Name })" id="btnCreate2"><span class="glyphicon"></span>Go</a>
+            <label>Upload albums</label> <a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Home", new { filter = Model.Name })" id="btnCreate3"><span class="glyphicon"></span>+</a>
+            <label>View albums</label> <a class="btn btn-success" data-modal="" href="@Url.Action("GallerySearch", "Home", new { filter = Model.Name })" id="btnCreate4"><span class="glyphicon"></span>Go</a>
+         </div>
+       
+            </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

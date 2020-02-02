@@ -1,0 +1,92 @@
+﻿@model PagedList.IPagedList<EvaGallery.Models.ImagePostModel>
+@using System.Linq
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Image Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<string> Users = new List<string>();
+    Users= ((from Mod in Model
+             orderby Mod.PhotoId descending
+             select Mod.UserName).Distinct()).ToList();
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/start/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<h2 >Welcome to our website !</h2>
+<br />
+<h6 style="color:rosybrown" >Click on albums to view gallery .......</h6>
+@using (Html.BeginForm("Account", null, FormMethod.Get))
+{
+    @*<div class="row">
+        <h6 style="margin-left:2%;color:white">Search Gallery!</h6>
+        <div class="col-sm-8">
+            <div class="input-group">
+                <input type="text"
+                       name="filter"
+                       value="@ViewBag.filter"
+                       class="form-control"
+                       style="display: inline"
+                       placeholder="Search" />
+                <span class="glyphicon glyphicon-search">
+                <button class="btn btn-success" type="submit"><span class="glyphicon">Go</span></button>
+                @*</span>
+            </div>
+        </div>
+
+    </div>*@
+    <div style="border:groove;border-color:rosybrown;padding:2%">
+ 
+        <br />
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                //for (int i = 0; i <= 4; i++)
+                //{
+                <div class="column">
+                    <figure>
+                        <a href="@item.ImagePath" title="@item.Title" data-gallery>
+                            <img src="@item.ThumbPath" alt="@item.ThumbPath" class="img-rounded" style="margin-bottom:7px;" />
+                        </a>
+                        <figcaption><a style="padding:1.3%"> @Html.ActionLink(linkText: (string)@item.Album, actionName: "Index", routeValues: new { filter = item.Album })</a></figcaption>
+                    </figure>
+                </div>
+                    @*}*@
+            }
+        </div>
+    </div>
+}
+<br />
+<br />
+
+<div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Account", new { page }))
+
+</div>
+<style type="text/css">
+    .imageHolder {
+        position: relative;
+        width: 285px;
+        height: 175px;
+    }
+
+        .imageHolder .caption {
+            position: absolute;
+            width: 283px;
+            height: 50px;
+            bottom: 0px;
+            left: 0px;
+            color: #ffffff;
+            background: green;
+            text-align: center;
+            font-weight: bold;
+            opacity: 0.7;
+        }
+</style>

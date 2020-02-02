@@ -1,0 +1,31 @@
+﻿
+
+@model PagedList.IPagedList<EvaGallery.Models.Users>
+@using PagedList.Mvc;
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+<table class="table table-striped table-bordered table-sm" cellspacing="0" >
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img alt="@Url.Content(item.Photo)" src="@Url.Content(item.Photo)" style="width:200px; height:auto; padding:30px;" />
+                <br />
+                <a style="padding:1.3%"> @Html.ActionLink(linkText: (string)@item.Name, actionName: "UserDetails", routeValues: new { filter = item.Name })</a>
+               @* <a style="padding:1.3%;"><label>@item.Name</label></a><a class="btn btn-success" data-modal="" href="@Url.Action("UserDetails", "Home", new { filter =item.Name })"></a>*@ 
+                <br />
+                <a style="padding:2.5%;color:white"><label> Post Comments </label></a><a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Blog", new { filter =item.Name })" id="btnCreate1"><span class="glyphicon"> + </span></a> 
+                <a style="padding:2.5%;color:white"><label>View Comments</label></a><a class="btn btn-success" data-modal="" href="@Url.Action("Index", "Blog", new { filter =item.Name })" id="btnCreate2"><span class="glyphicon"></span> Go</a>
+                <a style="padding:2.5%;color:white"><label>Upload albums</label></a><a class="btn btn-success" data-modal="" href="@Url.Action("Create", "Home", new { filter = item.Name })" id="btnCreate3"><span class="glyphicon"></span>+</a>
+                <a style="padding:2.5%;color:white"><label>View albums</label></a><a class="btn btn-success" data-modal="" href="@Url.Action("GallerySearch", "Home", new { filter = item.Name})" id="btnCreate4"><span class="glyphicon"></span>Go</a>
+
+</td >
+            
+        </tr>
+    }
+
+</table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("UserGrid", new { page }))
